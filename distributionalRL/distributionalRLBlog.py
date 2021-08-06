@@ -165,6 +165,7 @@ if __name__ == '__main__':
         ax2.set_zlabel('Probability')
         ax2.set_ylabel('Future Time')
         ax2.set_xlabel('Reward')
+        st.write(fig2)
       else:
         env = gridworld2_final()
 
