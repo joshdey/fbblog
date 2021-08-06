@@ -169,6 +169,7 @@ if __name__ == '__main__':
       else:
         env = gridworld2_final()
         env.reset()
+        sigmoid = lambda x,c,a: 1/(1 + np.exp(-a*(x-c))) #reward sensitivities
         dim=env.dim[1]
         num_states=dim #number of timesteps in the MP
         alpha=0.01 #learning rate 
