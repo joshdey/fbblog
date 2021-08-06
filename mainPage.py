@@ -22,4 +22,4 @@ if __name__ == '__main__':
     st.markdown("## Reinforcement Learning")
     st.markdown("### Fast Reinforcement Learning")
     st.markdown("### Distributional Reinforcement Learning")
-    st.markdown("### Dreamerv2 & Latent Spaces")
+    st.markdown("### [Dreamerv2 & Latent Spaces] (https://share.streamlit.io/joshdey/fbblog/main/dreamerBlog/dreamerBlog.py)")
