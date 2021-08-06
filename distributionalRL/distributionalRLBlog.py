@@ -26,7 +26,7 @@ def local_css(file_name):
 
 
 if __name__ == '__main__':
-    st.set_page_config(page_title = "Reinforcement Learning and Decision Making")
+    st.set_page_config(page_title = "Distributional RL Blog")
     local_css("style.css")
     st.markdown("<img src = 'https://fb-logo-images.s3-us-west-2.amazonaws.com/fatbrain-logo-color-h.png' style='width:210px;height:50px;'>",unsafe_allow_html=True)
 

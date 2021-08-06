@@ -8,7 +8,7 @@ def local_css(file_name):
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
         
 if __name__ == '__main__':
-    st.set_page_config(page_title = "Reinforcement Learning and Decision Making")
+    st.set_page_config(page_title = "FB Blog - Josh")
     local_css("style.css")
     st.markdown("<img src = 'https://fb-logo-images.s3-us-west-2.amazonaws.com/fatbrain-logo-color-h.png' style='width:210px;height:50px;'>",unsafe_allow_html=True)
 
@@ -21,5 +21,5 @@ if __name__ == '__main__':
     st.markdown("### Transformer Reinforcement Learning")
     st.markdown("## Reinforcement Learning")
     st.markdown("### Fast Reinforcement Learning")
-    st.markdown("### Distributional Reinforcement Learning")
+    st.markdown("### [Distributional Reinforcement Learning] (https://share.streamlit.io/joshdey/fbblog/main/distributionalRL/distributionalRLBlog.py)")
     st.markdown("### [Dreamerv2 & Latent Spaces] (https://share.streamlit.io/joshdey/fbblog/main/dreamerBlog/dreamerBlog.py)")
