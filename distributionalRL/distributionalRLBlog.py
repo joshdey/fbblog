@@ -168,6 +168,128 @@ if __name__ == '__main__':
         st.write(fig2)
       else:
         env = gridworld2_final()
+        env.reset()
+        dim=env.dim[1]
+        num_states=dim #number of timesteps in the MP
+        alpha=0.01 #learning rate 
+        num_gammas=100 #number of gammas
+
+        # Use gammas equally separated in the 1/log(gamma) space:
+        taus=np.linspace(0.01,3,num_gammas)
+        range_g=np.exp(-1/taus)
+
+        # Use gammas equally separated in the linear space:
+        # range_g=np.linspace(0.0,1,num_gammas)
 
 
+        num_trials=1000 #number of trials used to learn the TD code
+
+        width=13 #steepness of the reward sensitivities
+        num_h=250 #number of h's
+        range_h=np.linspace(-3,3,num_h) #theta_h range
+        V_gamma=np.zeros((len(range_g),dim,num_h)) #initialize V_{h,\gamma}
+        i_g=0 #counter for the gammas
+        for gamma in tqdm(range_g[0:-1]):
+            i_g=i_g+1
+            V=np.zeros((dim,num_h))
+            for t in range(1,num_trials):
+                state = env.reset()
+                done = False
+                rewards = 0
+                while done == False:
+                    old_pos = state[1]
+                    new_state, reward, done = env.step(1)
+                    new_pos = new_state[1]
+                    R=sigmoid(reward,range_h, width) #Apply reward sensitivity to the reward r
+                    if not done:
+                        delta= R + gamma*V[new_pos,:] - V[old_pos,:]
+                    else:
+                        delta = R - V[old_pos,:]
+                    V[old_pos,:]=V[old_pos,:]+alpha*delta
+            V_gamma[i_g,:,:]=V
+        V_gamma2=V_gamma[4:-1,0,:]
+        Z=V_gamma2[:,0:-2]-V_gamma2[:,1:-1]
+        X,Y=np.meshgrid(range_h[0:-2],range_g[4:-1]);
+
+        for h in range(0,num_h-2):
+            Z[:,h]=savgol_filter(Z[:,h], 15, 1)  
+
+                
+        fig1 = plt.figure(dpi=150)
+        ax1 = fig1.gca(projection='3d')
+        surf = ax.plot_surface(X, Y, Z, cmap='summer'
+                              , edgecolor='none',alpha=1)
+        ax1.view_init(60, -45)
+        # ax.set_zlim(0,0.15)
+        ax1.grid(b=None)
+        plt.yticks([0,0.5,1])
+        plt.xticks([-2,-1,0,1,2])
+        ax1.set_zlabel('Convergence value')
+        ax1.set_ylabel('Temporal Discount')
+        ax1.set_xlabel('Reward')
+        st.write(fig1)
+        alpha_reg=0.2 #Regularization parameter
+
+        K=num_states #Temporal horizon
+        delta_t=1 #Length of timestep
+
+        #define matrix F:
+        F=np.zeros((len(range_g),K))
+        for i_g in range(0,len(range_g)):
+            for i_t in range(0,K):
+                F[i_g,i_t]=range_g[i_g]**(i_t*delta_t)
+
+                
+        U, lam, V = sp.linalg.svd(F) #SVD decomposition of F
+
+        #set up gamma-space:
+        V_gamma2=V_gamma[:,0,:]
+        Z=V_gamma2[:,0:-2]-V_gamma2[:,1:-1]
+
+
+        #smooth gamma-space (it might not be necessary, it helps if the input is *very* noisy):
+        #for h in range(0,num_h-2):
+            #Z[:,h]=savgol_filter(Z[:,h], 5, 1)
+
+        #Linearly recover tau-space from eigenspace of F:
+        tau_space=np.zeros((K,num_h-2))
+        for h in range(0,num_h-2):
+            term=np.zeros((1,K))
+            for i in range(0,len(lam)):
+                fi=lam[i]**2/(alpha_reg**2+lam[i]**2)
+                new=fi*(((U[:,i]@Z[:,h])*V[i,:] )/lam[i])
+                term=term+new
+            tau_space[:,h]=term
+
+            
+        #smooth gamma-space (it might not be necessary, use for a smoother visualization):
+        #for h in range(0,num_h-2):
+            #tau_space[:,h]=savgol_filter(tau_space[:,h], 11, 1)
+
+
+        #Normalization (it is not necessary for this very short temporal horizon T=4):
+        tau_space[tau_space<0]=0 #make all probabilities positive
+        for i in range(0,len(tau_space)): #normalize
+            if np.nansum(tau_space[i,:])>0.0:
+                tau_space[i,:]=tau_space[i,:]/np.nansum(tau_space[i,:])
+
+        fig2=plt.figure(dpi=150)
+        ax2 = fig2.gca(projection='3d')
+        X,Y=np.meshgrid(range_h[0:-2],delta_t*np.linspace(0,K-1,K)) #grid to plot
+
+        surf = ax.plot_surface(X, Y, tau_space, cmap='summer'
+                                  , edgecolor='none',alpha=1)
+
+
+        ax2.grid()
+
+        ax2.view_init(60, -45)
+        plt.yticks([0,1,2,3])
+        plt.xticks([-2,-1,0,1,2])
+        #ax.set_zlim(0,0.085)
+        ax2.set_zlabel('Probability')
+        ax2.set_ylabel('Future Time')
+        ax2.set_xlabel('Reward')
+        fig2.canvas.draw_idle()
+        st.write(fig2)
       
