@@ -218,7 +218,7 @@ if __name__ == '__main__':
                 
         fig1 = plt.figure(dpi=150)
         ax1 = fig1.gca(projection='3d')
-        surf = ax.plot_surface(X, Y, Z, cmap='summer'
+        surf = ax1.plot_surface(X, Y, Z, cmap='summer'
                               , edgecolor='none',alpha=1)
         ax1.view_init(60, -45)
         # ax.set_zlim(0,0.15)
@@ -278,7 +278,7 @@ if __name__ == '__main__':
         ax2 = fig2.gca(projection='3d')
         X,Y=np.meshgrid(range_h[0:-2],delta_t*np.linspace(0,K-1,K)) #grid to plot
 
-        surf = ax.plot_surface(X, Y, tau_space, cmap='summer'
+        surf = ax2.plot_surface(X, Y, tau_space, cmap='summer'
                                   , edgecolor='none',alpha=1)
 
 
