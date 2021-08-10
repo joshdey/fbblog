@@ -13,7 +13,7 @@ if __name__ == '__main__':
     st.markdown("<img src = 'https://fb-logo-images.s3-us-west-2.amazonaws.com/fatbrain-logo-color-h.png' style='width:210px;height:50px;'>",unsafe_allow_html=True)
 
     st.title("Dreamerv2")
-    st.markdown("Version 1.0 | Author: Josh |  Build Date: 08/01/20")
+    st.markdown("Version 0.3 | Author: Josh |  Build Date: 08/01/20")
 
     st.write("[Dreamerv2 Paper](https://arxiv.org/abs/2010.02193)")
     st.write("[Dreamerv2 Blog Post](https://ai.googleblog.com/2021/02/mastering-atari-with-discrete-world.html?m=1)")
