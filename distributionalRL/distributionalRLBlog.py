@@ -31,10 +31,14 @@ if __name__ == '__main__':
     st.markdown("<img src = 'https://fb-logo-images.s3-us-west-2.amazonaws.com/fatbrain-logo-color-h.png' style='width:210px;height:50px;'>",unsafe_allow_html=True)
 
     st.title("Distributional Reinforcement Learning")
-    st.markdown("Version 1.0 | Author: Josh |  Build Date: 08/01/20")
+    st.markdown("Version 0.2 | Author: Josh |  Build Date: 08/01/20")
 
     st.sidebar.header('Configuration')
     environment = st.sidebar.number_input("Which environment?", min_value=1, max_value=2)
+
+    st.markdown('## Background')
+    
+
 
     if st.button('Run'):
       if environment == 1:
