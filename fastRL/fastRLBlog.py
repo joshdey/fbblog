@@ -22,4 +22,4 @@ if __name__ == '__main__':
 
     st.markdown('## References')
     st.markdown('<sup>2</sup> [Universal Successor Features Approximators] (https://arxiv.org/pdf/1812.07626v1.pdf)')
-    st.markdown(<sup>'3'</sup> '[The Successor Representation: Its Computational Logic and Neural Substrates:] (https://www.jneurosci.org/content/38/33/7193)')
+    st.markdown('<sup>'3'</sup> [The Successor Representation: Its Computational Logic and Neural Substrates:] (https://www.jneurosci.org/content/38/33/7193)')
