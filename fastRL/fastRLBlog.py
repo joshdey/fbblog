@@ -21,5 +21,5 @@ if __name__ == '__main__':
     st.write('As a middle ground to speed up the RL training process while still being relatively flexible in terms of preferences, successor features are introduced - rather than a single expected value in a model free algorithm, multiple features are quantified and represented in the model, even if it doesn\'t necessarily immediately impact the agent\'s preferences. This allows for different policies to be evaluated under different preferences, in a process known as generalized policy evaluation, or GPE. More information regarding successor features in references')
 
     st.markdown('## References')
-    st.markdown('<sup>2<sup> [Universal Successor Features Approximators] (https://arxiv.org/pdf/1812.07626v1.pdf)')
-    st.markdown('<sup>3<sup> [The Successor Representation: Its Computational Logic and Neural Substrates:] (https://www.jneurosci.org/content/38/33/7193)')
+    st.markdown('<sup>2</sup> [Universal Successor Features Approximators] (https://arxiv.org/pdf/1812.07626v1.pdf)')
+    st.markdown('<sup>3</sup> [The Successor Representation: Its Computational Logic and Neural Substrates:] (https://www.jneurosci.org/content/38/33/7193)')
