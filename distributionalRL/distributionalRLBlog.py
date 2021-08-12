@@ -37,7 +37,7 @@ if __name__ == '__main__':
     environment = st.sidebar.number_input("Which environment?", min_value=1, max_value=2)
 
     st.markdown('## Background')
-    
+    st.write('Recent advances in AI aim to converge frameworks like reinforcement learning with the modern school of thought on how mammilian brains work and process decisions. This involves modeling a distribution of expected future rewards rather than an expected scalar value. ')
 
 
     if st.button('Run'):
