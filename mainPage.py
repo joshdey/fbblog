@@ -20,6 +20,6 @@ if __name__ == '__main__':
     st.markdown("## Attention")
     st.markdown("### Transformer Reinforcement Learning")
     st.markdown("## Reinforcement Learning")
-    st.markdown("### Fast Reinforcement Learning")
+    st.markdown("### [Fast Reinforcement Learning] (https://share.streamlit.io/joshdey/fbblog/main/fastRL/fastRLBlog.py)")
     st.markdown("### [Distributional Reinforcement Learning] (https://share.streamlit.io/joshdey/fbblog/main/distributionalRL/distributionalRLBlog.py)")
     st.markdown("### [Dreamerv2 & Latent Spaces] (https://share.streamlit.io/joshdey/fbblog/main/dreamerBlog/dreamerBlog.py)")
